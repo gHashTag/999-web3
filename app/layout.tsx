@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { useState } from 'react'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { NextUIProvider } from '@nextui-org/react'
 import { FloatingNavbar } from '@/components/ui/floating-navbar'
 // // import WavyBackground from '@components/ui/wavy-background'
 import BackgroundBeams from '@/components/ui/background-beams'
@@ -29,10 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {' '}
-        <BackgroundBeams />
-        <TabsDemo />
-        {children}
+        <NextUIProvider>
+          <BackgroundBeams />
+          <TabsDemo />
+          {children}
+        </NextUIProvider>
       </body>
     </html>
   )
