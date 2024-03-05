@@ -47,3 +47,7 @@ body {
 .tab-color {
   background-color: '#f6ff00';
 }
+
+.button-left {
+  margin-right: auto; 
+}

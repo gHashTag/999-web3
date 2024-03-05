@@ -11,7 +11,7 @@ import { FloatingNavbar } from '@/components/ui/floating-navbar'
 import BackgroundBeams from '@/components/ui/background-beams'
 import { HoveredLink, Menu, MenuItem, ProductItem } from '@/components/ui/navbar-menu'
 import { TabsDemo } from '@/components/ui/tabs-demo'
-import Header from '@/components/ui/header'
+import Header from '@/components/ui/menu/header'
 import { Providers } from './providers'
 const navItems = {
   items: [
