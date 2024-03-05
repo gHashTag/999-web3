@@ -1,14 +1,19 @@
 'use-client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { IProvider } from '@web3auth/base'
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button } from '@nextui-org/react'
 import IconLogo from './icon-logo'
 import { usePathname } from 'next/navigation'
 import DropdownMenuApp from './dropdown'
 import useDeviceDetect from '@/hooks/useDeviceDetect'
+import { web3auth } from '@/utils/web3Auth'
+import { ADAPTER_EVENTS } from '@web3auth/base'
+import { login } from '@/utils/auth'
+// import { getPublicCompressed } from '@toruslabs/eccrypto'
 
 export default function Header() {
-  const { isMobile, isTablet } = useDeviceDetect()
+  const { isMobile } = useDeviceDetect()
   const [isDropdownVisible, setIsDropdownVisible] = useState(false)
   const pathname = usePathname()
 
@@ -42,13 +47,18 @@ export default function Header() {
             Tasks
           </Link>
         </NavbarItem>
+        <NavbarItem isActive={isTabActive('/wallet')}>
+          <Link color={isTabActive('/wallet') ? 'primary' : 'foreground'} href="/wallet">
+           Wallet
+          </Link>
+        </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="/login">Login</Link>
+          <Link onClick={login}>Login</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="/signup" variant="flat">
+          <Button as={Link} color="primary" onClick={login} variant="flat">
             Sign Up
           </Button>
         </NavbarItem>
