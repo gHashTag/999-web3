@@ -7,12 +7,15 @@ import IconLogo from './icon-logo'
 import { usePathname } from 'next/navigation'
 import DropdownMenuApp from './dropdown'
 import useDeviceDetect from '@/hooks/useDeviceDetect'
+import { useWeb3Auth } from '@/hooks/useWeb3Auth'
 import { web3auth } from '@/utils/web3Auth'
 import { ADAPTER_EVENTS } from '@web3auth/base'
 import { login } from '@/utils/auth'
 // import { getPublicCompressed } from '@toruslabs/eccrypto'
 
 export default function Header() {
+  const { loggedIn } = useWeb3Auth()
+  console.log('Header - loggedIn', loggedIn)
   const { isMobile } = useDeviceDetect()
   const [isDropdownVisible, setIsDropdownVisible] = useState(false)
   const pathname = usePathname()
@@ -49,19 +52,23 @@ export default function Header() {
         </NavbarItem>
         <NavbarItem isActive={isTabActive('/wallet')}>
           <Link color={isTabActive('/wallet') ? 'primary' : 'foreground'} href="/wallet">
-           Wallet
+            Wallet
           </Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link onClick={login}>Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="primary" onClick={login} variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem>
+        {!loggedIn && (
+          <>
+            <NavbarItem className="hidden lg:flex">
+              <Link onClick={login}>Login</Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Button as={Link} color="primary" onClick={login} variant="flat">
+                Sign Up
+              </Button>
+            </NavbarItem>
+          </>
+        )}
       </NavbarContent>
     </Navbar>
   )

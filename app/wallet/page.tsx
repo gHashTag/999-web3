@@ -1,9 +1,10 @@
 'use client'
 import { useWeb3Auth } from '@hooks/useWeb3Auth'
 import { Button, User, Card, CardBody } from '@nextui-org/react'
+import { web3auth } from '@/utils/web3Auth'
 
 export default function Wallet() {
-  const { address, balance, userInfo, loggedIn, login, logout, getUserInfo, getAccounts, getBalance, signMessage } =
+  const { address, balance, userInfo, login, loggedIn, logout, getUserInfo, getAccounts, getBalance, signMessage } =
     useWeb3Auth()
 
   const loggedInView = (
@@ -47,11 +48,10 @@ export default function Wallet() {
   const name = userInfo?.name
   const description = userInfo?.email
   const profileImage = userInfo?.profileImage
-  console.log('profileImage', profileImage)
-
+  console.log('loggedIn - Wallet', loggedIn)
   return (
     <main className="flex flex-col items-center justify-between p-24">
-      {userInfo && <User name={name} description={description} avatarProps={profileImage} />}
+      {userInfo && <User name={name} description={description} avatarProps={{ src: profileImage }} />}
       <div style={{ padding: '20px' }} />
       {address && (
         <Card>
