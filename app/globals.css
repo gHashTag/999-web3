@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 :root {
+  --brand: #f6ff00;
+  --foreground: #fff;
+  --background-color: #0f0f0c;
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -16,18 +19,11 @@
   }
 }
 
-:root {
-  --foreground: #fff;
-  --background-color: #0f0f0c;
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
 body {
   color: var(--foreground);
   background-color: var(--background-color);
 }
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

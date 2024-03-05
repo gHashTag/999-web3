@@ -61,14 +61,14 @@ export const Tabs = ({
               <motion.div
                 layoutId="clickedbutton"
                 transition={{ type: 'spring', bounce: 0.3, duration: 0.6 }}
-                style={{ backgroundColor: '#f6ff00' }}
+                style={{ backgroundColor: 'var(--brand)' }}
                 className={cn('absolute inset-0 dark:bg-zinc-800 rounded-full ', activeTabClassName)}
               />
             )}
 
             <span
               className="relative block"
-              style={{ color: active.value === tab.value ? '#000000' : '#f6ff00' }} // Цвет шрифта для активной и неактивной кнопки
+              style={{ color: active.value === tab.value ? '#000000' : 'var(--brand)' }} // Цвет шрифта для активной и неактивной кнопки
             >
               {tab.title}
             </span>
